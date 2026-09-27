@@ -243,7 +243,7 @@ function Home() {
             {/* Text Content */}
             <div className="hero-text" style={{ position: "relative", maxWidth: "550px", padding: "0 10px" }}>
               <h1 style={{ fontSize: "2.7rem", lineHeight: "1.1", marginBottom: "15px", color: "#111", fontWeight: "800", textAlign: "left", minHeight: "90px" }}>
-                <TypewriterEffect text="Transform Your Operations with Advanced Software Solutions" />
+                <TypewriterEffect text="Elevate Your Business with Advanced Software Technologies" />
               </h1>
               <p style={{ fontSize: "1.1rem", lineHeight: "1.5", marginBottom: "25px", color: "#444", textAlign: "left" }}>
                 Scale efficiently, streamline workflows, and future-proof your business. Our custom automation and state-of-the-art software technologies eliminate bottlenecks and drive measurable efficiency so your team can focus on growth.

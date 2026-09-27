@@ -132,15 +132,15 @@ const productsList = [
       "Customizable for Different Industries"
     ]
   },
-  { 
-    id: 7, 
-    title: 'Social Media', 
-    subtitle: '',
-    img: '/products/social-media.jpg',
-    description: null,
-    featuresTitle: null,
-    features: null
-  },
+  // { 
+  //   id: 7, 
+  //   title: 'Social Media', 
+  //   subtitle: '',
+  //   img: '/products/social-media.jpg',
+  //   description: null,
+  //   featuresTitle: null,
+  //   features: null
+  // },
 ];
 
 function Products() {

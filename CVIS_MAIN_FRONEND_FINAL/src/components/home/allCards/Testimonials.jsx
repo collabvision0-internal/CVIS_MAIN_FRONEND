@@ -83,50 +83,52 @@ import React, { useState } from "react";
 import "./Testimonials.css";
 
 const Testimonials = () => {
-  // Hardcoded data instead of fetching from an API
   const [feeds] = useState([
     {
       _id: "1",
-      likeMost: "This service is amazing! I highly recommend it to everyone. It has completely transformed the way we handle our business.",
+      likeMost: "I’m very happy with the website created by Collab Vision. The website is responsive, modern, and has attractive animations. Great work and professional service.",
       rating: 5,
-      firstName: "Belete",
-      lastName: "",
+      firstName: "Om Shetty",
+      lastName: "– TheVision9",
+      websiteLink: "https://www.thevision9.com",
+      linkText: "www.thevision9.com"
     },
     {
       _id: "2",
-      likeMost: "Very satisfied with the quality and speed of delivery. The team was extremely responsive.",
-      rating: 4,
-      firstName: "Henry",
-      lastName: "",
+      likeMost: "Collab Vision did a great job creating our education website for students in Singapore. The website is user-friendly, professional, and works smoothly on different devices. Highly recommended.",
+      rating: 5,
+      firstName: "Peter",
+      lastName: "– Plenrich",
+      websiteLink: "https://www.plenrich.com",
+      linkText: "www.plenrich.com"
     },
     {
       _id: "3",
-      likeMost: "Great customer support and excellent product quality! The integration was flawless.",
+      likeMost: "I am very satisfied with Collab Vision’s work. They developed an Android and iOS app for my Gold Jewellery Retail and Girvi Software. The app is easy to use and works very well.",
       rating: 5,
-      firstName: "Rakesh",
-      lastName: "M",
+      firstName: "Raju Hanamasagar",
+      lastName: "– Gold Jewellery Retailer & Girvi Software",
+      websiteLink: "",
+      linkText: ""
     },
     {
       _id: "4",
-      likeMost: "Outstanding experience from start to finish. The custom software exactly met our needs.",
+      likeMost: "I am very satisfied with the work done by Collab Vision. They understood our requirements and created a professional website for Lakeview Hospitals. Thank you for the excellent service.",
       rating: 5,
-      firstName: "Sarah",
-      lastName: "Jenkins",
+      firstName: "Dr. Girish K. Sonwalkar",
+      lastName: "– Lakeview Hospitals",
+      websiteLink: "https://lakeviewhospitals.in",
+      linkText: "lakeviewhospitals.in"
     },
     {
       _id: "5",
-      likeMost: "Highly professional team with deep technical expertise. Delivered perfectly on time.",
+      likeMost: "I am very satisfied with Collab Vision’s work on my website. They created a professional and attractive website that represents my holistic healing services beautifully. Thank you for the great work.",
       rating: 5,
-      firstName: "Michael",
-      lastName: "Chen",
-    },
-    {
-      _id: "6",
-      likeMost: "The app development exceeded our expectations. Beautiful UI and fast performance.",
-      rating: 4,
-      firstName: "Emma",
-      lastName: "Roberts",
-    },
+      firstName: "Dr. Uma Patil",
+      lastName: "– Holistic Healing",
+      websiteLink: "https://drumapatilholistichealing.com/",
+      linkText: "drumapatilholistichealing.com"
+    }
   ]);
 
   return (
@@ -137,7 +139,7 @@ const Testimonials = () => {
           {[...feeds, ...feeds].map((item, index) => (
             <div key={`${item._id}-${index}`} className="box">
               <i className="fas fa-quote-left quote"></i>
-              <p>{item.likeMost}</p>
+              <p>“{item.likeMost}”</p>
               <div className="content">
                 <div className="info">
                   <div
@@ -148,9 +150,21 @@ const Testimonials = () => {
                       <span key={i}>★</span>
                     ))}
                   </div>
-                  <div className="name">
+                  <div className="name" style={{ marginTop: "10px", fontSize: "16px" }}>
                     {item.firstName} {item.lastName}
                   </div>
+                  {item.websiteLink && (
+                    <div className="website-link" style={{ marginTop: "5px" }}>
+                      <a 
+                        href={item.websiteLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ color: "#0075aa", textDecoration: "none", fontSize: "14px", fontWeight: "600" }}
+                      >
+                        {item.linkText}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -57,7 +57,7 @@ function Services() {
         </div>
 
         <div className="domains-section">
-          <h2>Industries We Serve</h2>
+          <h2>Domains We Worked</h2>
           <p className="domains-subtitle">Our solutions support businesses across diverse industries, including:</p>
           
           {/* Continuous scrolling marquee container */}

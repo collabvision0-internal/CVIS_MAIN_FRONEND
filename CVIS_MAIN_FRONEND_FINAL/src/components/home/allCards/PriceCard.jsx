@@ -280,9 +280,9 @@ const PriceCard = () => {
       {/* T&C Section */}
       <div style={{ textAlign: "center", marginTop: "20px", fontSize: "18px", display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}>
         <span>Terms and Conditions Applied.</span>
-        <a href="/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer" className="tnc-link" title="View Rules & Regulations">
+        {/* <a href="/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer" className="tnc-link" title="View Rules & Regulations">
           <FontAwesomeIcon icon={faExternalLinkAlt} size="sm" />
-        </a>
+        </a> */}
       </div>
     </div>
   );

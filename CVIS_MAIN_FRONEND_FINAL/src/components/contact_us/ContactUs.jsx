@@ -139,9 +139,10 @@ import "./Contact.css";
 
 import { collection, addDoc } from "firebase/firestore";
 
-import { db } from "../../../firebase";
+// import { db } from "../../../firebase";
 import { db } from "../../firebase";
 import Navbar from "../attributes/Navbar";
+import emailjs from '@emailjs/browser';
 
 const layout = {
   labelCol: {
@@ -183,6 +184,7 @@ function ContactUs() {
     }
 
     try {
+      // 1. (Optional) Keep existing Firebase save logic
       await addDoc(collection(db, "Contact Us"), {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -192,6 +194,23 @@ function ContactUs() {
         message: formData.message,
         timestamp: new Date(),
       });
+
+      // 2. Send email via EmailJS
+      // Replace the below strings with your actual Service ID, Template ID, and Public Key from your EmailJS dashboard
+      const serviceId = "service_zqkyuam";
+      const templateId = "template_c7s2pgt";
+      const publicKey = "Qc6xHVwTgG9Ku5r16";
+
+      const templateParams = {
+        from_name: formData.firstName + " " + formData.lastName,
+        from_email: formData.email,
+        phone_no: formData.phoneNo,
+        subject: formData.Subject,
+        message: formData.message,
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      alert("Your message has been sent successfully!");
 
       setFormData({
         firstName: "",
@@ -203,6 +222,7 @@ function ContactUs() {
       });
     } catch (error) {
       console.error("Error sending feedback: ", error);
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -258,74 +278,7 @@ function ContactUs() {
 
         {/* contact us form section */}
         <div className="contact-form-section">
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <h2>Contact us form</h2>
-
-            <div className="contact-form-cotainer">
-              <label>
-                First Name:
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="ABC"
-                />
-              </label>
-              <label>
-                Last Name:
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="XYZ"
-                />
-              </label>
-              <label>
-                Email:
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="xyz@gmail.com"
-                />
-              </label>
-              <label>
-                Phone No:
-                <input
-                  type="text"
-                  name="phoneNo"
-                  value={formData.phoneNo}
-                  onChange={handleChange}
-                  placeholder="+911234567890"
-                />
-              </label>
-              <label>
-                Subject:
-                <input
-                  type="text"
-                  name="Subject"
-                  value={formData.Subject}
-                  onChange={handleChange}
-                  placeholder="If any query please enter your query"
-                />
-              </label>
-              <label>
-                Your message:
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Enter your message"
-                ></textarea>
-              </label>
-
-              <button type="submit">Submit</button>
-            </div>
-            <input type="submit" value="Submit" />
-          </form>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdkA8__ZIDmlSHx6Z7RScP1Jy3motPUnBVGHRXNfUKlBd-VnA/viewform?embedded=true" width="640" height="1510" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
       </div>
       <FAQDropdown />

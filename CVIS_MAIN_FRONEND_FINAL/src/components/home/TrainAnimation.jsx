@@ -28,7 +28,7 @@ const TrainAnimation = () => {
       {/* PHASE 1: The Train Entry */}
       {phase === "train" && (
         <div className="train-content">
-          <h2 className="train-line-1 train-enter-1">YOUR VISION IS</h2>
+          <h2 className="train-line-1 train-enter-1">YOUR VISION</h2>
           <h2 className="train-line-2 train-enter-2">OUR SOLUTION</h2>
         </div>
       )}
@@ -40,7 +40,7 @@ const TrainAnimation = () => {
             {/* Repeat 4 times for seamless infinite scroll */}
             {[...Array(4)].map((_, i) => (
               <div key={i} className="train-content marquee-item">
-                <h2 className="train-line-1">YOUR VISION IS</h2>
+                <h2 className="train-line-1">YOUR VISION</h2>
                 <h2 className="train-line-2">OUR SOLUTION</h2>
               </div>
             ))}
