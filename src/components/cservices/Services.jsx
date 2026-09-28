@@ -1,130 +1,80 @@
-// import "./Services.css";
-// import React from "react";
-// import { Image } from "antd";
-// import { NewsHeaderCard } from "react-ui-cards";
-// import Navbar from "../attributes/Navbar";
-// const cardData = [
-//   {
-//     href: "/services/webdesign",
-//     thumbnail:
-//       "https://static.wixstatic.com/media/4cdf87_da23de8dd2d448e0bb976548bf82ecaf~mv2.jpg/v1/fill/w_558,h_419,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image-empty-state.jpg",
-//     title: "Web Development",
-//   },
-//   {
-//     href: "/services/appdev",
-//     thumbnail:
-//       "https://static.wixstatic.com/media/4cdf87_5a89b2293faf4d98bd23a49e9fafebba~mv2.jpg/v1/fill/w_950,h_664,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4cdf87_5a89b2293faf4d98bd23a49e9fafebba~mv2.jpg",
-//     title: "Application Development",
-//   },
-
-//   {
-//     href: "/services/Integration",
-//     thumbnail:
-//       "https://static.wixstatic.com/media/4cdf87_10efa682cfba485d983f4cb28e0c8ac4~mv2.jpg/v1/fill/w_613,h_664,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4cdf87_10efa682cfba485d983f4cb28e0c8ac4~mv2.jpg",
-//     title: "Integration",
-//   },
-// ];
-// function Services() {
-//   return (
-//     <>
-//       <Navbar />
-
-//       <div>
-//         <h1 className="HeaderText Ht">Services</h1>
-//         <div className="Headerimage ">
-//           <Image
-//             className="img"
-//             width={"100%"}
-//             height={"100%"}
-//             src="https://static.wixstatic.com/media/11062b_bd24f5b72b31462882a36f9ce22c7e3a~mv2.jpeg/v1/fill/w_1899,h_239,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_bd24f5b72b31462882a36f9ce22c7e3a~mv2.jpeg"
-//           />
-//         </div>
-//         <div className="gapper">
-//           <div className="cards">
-//             {cardData.map((card, index) => (
-//               <div className="mycard-Learn1 l1 animate-down">
-//                 <NewsHeaderCard
-//                   key={index}
-//                   className="mainCard"
-//                   href={card.href}
-//                   thumbnail={card.thumbnail}
-//                   title={card.title}
-//                 />
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-// export default Services;
 import "./Services.css";
-import React from "react";
-import { Image } from "antd";
-import { NewsHeaderCard } from "react-ui-cards";
+import React, { useEffect, useState } from "react";
 import Navbar from "../attributes/Navbar";
 import { useNavigate } from "react-router-dom";
-
-const cardData = [
-  {
-    href: "/services/webdesign",
-    thumbnail:
-      "https://static.wixstatic.com/media/4cdf87_da23de8dd2d448e0bb976548bf82ecaf~mv2.jpg/v1/fill/w_558,h_419,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image-empty-state.jpg",
-    title: "Web Development",
-  },
-  {
-    href: "/services/appdev",
-    thumbnail:
-      "https://static.wixstatic.com/media/4cdf87_5a89b2293faf4d98bd23a49e9fafebba~mv2.jpg/v1/fill/w_950,h_664,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4cdf87_5a89b2293faf4d98bd23a49e9fafebba~mv2.jpg",
-    title: "Application Development",
-  },
-  {
-    href: "/services/integration",
-    thumbnail:
-      "https://static.wixstatic.com/media/4cdf87_10efa682cfba485d983f4cb28e0c8ac4~mv2.jpg/v1/fill/w_613,h_664,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4cdf87_10efa682cfba485d983f4cb28e0c8ac4~mv2.jpg",
-    title: "Integration",
-  },
-];
+import { servicesData, domainsData } from "./servicesData";
 
 function Services() {
   const navigate = useNavigate();
+  const [animate, setAnimate] = useState(false);
 
-  const handleCardClick = (href) => {
-    navigate(href);
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimate(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
       <Navbar />
-
-      <div>
-        <h1 className="HeaderText Ht">Services</h1>
-        <div className="Headerimage">
-          <Image
-            className="img"
-            width={"100%"}
-            height={"100%"}
-            src="https://static.wixstatic.com/media/11062b_bd24f5b72b31462882a36f9ce22c7e3a~mv2.jpeg/v1/fill/w_1899,h_239,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_bd24f5b72b31462882a36f9ce22c7e3a~mv2.jpeg"
-          />
-        </div>
-        <div className="gapper">
-          <div className="cards">
-            {cardData.map((card, index) => (
-              <div
-                key={index}
-                className="mycard-Learn1 l1 animate-down"
-                onClick={() => handleCardClick(card.href)}
-                style={{ cursor: "pointer" }}
-              >
-                <NewsHeaderCard
-                  className="mainCard"
-                  thumbnail={card.thumbnail}
-                  title={card.title}
-                />
+      <div className="services-page-container">
+        <h1 className="services-main-heading">Our Services</h1>
+        <p className="services-main-description">
+          At Collab Vision Infosolution, we provide end-to-end technology and digital solutions that help businesses build, automate, integrate, and grow their digital operations.
+        </p>
+        
+        <div className="custom-services-grid">
+          {servicesData.map((service, index) => (
+            <div 
+              key={service.id} 
+              className={`services-flip-card ${animate ? 'deal-animation' : ''}`}
+              style={{ '--card-index': index }}
+            >
+              <div className="services-flip-card-inner">
+                <div className="services-flip-card-front">
+                  <div 
+                    className="services-flip-card-image" 
+                    style={{ backgroundImage: `url(${service.image})` }}
+                  ></div>
+                  <div className="services-flip-card-title-container">
+                    <h2>{service.title}</h2>
+                  </div>
+                </div>
+                <div className="services-flip-card-back">
+                  <h2>{service.title}</h2>
+                  <p>{service.subtitle}</p>
+                  <button 
+                    className="view-details-btn" 
+                    onClick={() => navigate(`/services/detail/${service.id}`)}
+                  >
+                    View Details
+                  </button>
+                </div>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="domains-section">
+          <h2>Domains We Worked</h2>
+          <p className="domains-subtitle">Our solutions support businesses across diverse industries, including:</p>
+          
+          {/* Continuous scrolling marquee container */}
+          <div className="domains-marquee-container">
+            <div className="domains-marquee-content">
+              {domainsData.map((domain, idx) => (
+                <div key={idx} className="domain-box">
+                  {domain}
+                </div>
+              ))}
+              {/* Duplicate for seamless scrolling */}
+              {domainsData.map((domain, idx) => (
+                <div key={`dup-${idx}`} className="domain-box">
+                  {domain}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

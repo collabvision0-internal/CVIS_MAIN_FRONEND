@@ -1,119 +1,63 @@
 import React from "react";
-import Android from "./card media/android dev.png";
-import Integration from "./card media/integration.jpg";
-import Learning from "./card media/Learning.jpg";
-import DigitalMarketing from "./card media/digital marketing.png";
-import WebDesigning from "./card media/web_designing.jpg";
+import { useNavigate } from "react-router-dom";
+import "../../cservices/Services.css";
+import { servicesData } from "../../cservices/servicesData";
 import "./cards.css";
-import { Link, useNavigate } from "react-router-dom";
 
 const Cards = () => {
   const navigate = useNavigate();
 
-  const handleCardClick = (category) => {
-    // navigate(`/pricing/${category}`);
+  const selectedServices = servicesData.filter((s) => 
+    ["integration-services", "web-development", "mobile-app-development"].includes(s.id)
+  );
 
-    if (category == "web") {
-      navigate(`/services/webdesign`);
-    } else if (category == "Integration") {
-      navigate(`/services/Integration`);
-    } else if (category == "learning") {
-      navigate(`/learning`);
-    } else if (category == "App Development") {
-      navigate(`/services/appdev`);
-    }
-  };
   return (
-    <div className="main-container">
-      <div className="card-container">
-        {/* First Card - Android App Development */}
-        <div
-          className="card animate-right"
-          onClick={() => handleCardClick("Integration")}
-        >
-          {" "}
-          <div className="card-image">
-            <img src={Integration} alt="integration" />
-          </div>
-          <div className="card-content">
-            <div className="card-title">Integration</div>
-            <p className="card-text" style={{ textAlign: "left" }}>
-              Seamlessly connecting systems and enhancing workflows with our
-              robust integration platform solutions
-            </p>
-          </div>
-        </div>
+    <div className="main-container" style={{ flexDirection: "column", alignItems: "center" }}>
+      <h1 style={{ color: "black", margin: "40px 0 10px 0", fontSize: "2.5rem", fontWeight: "700" }}>Services</h1>
       
-        <div
-          className="card animate-right"
-          onClick={() => handleCardClick("web")}
-        >
-          {" "}
-          <div className="card-image ">
-            <img
-              src={WebDesigning}
-              alt="Web Designing"
-              onClick={() => handleCardClick("WebDevelopment")}
-            />
-          </div>
-          <div className="card-content">
-            <div className="card-title">Web Development</div>
-            <p className="card-text" style={{ textAlign: "left" }}>
-              Creating dynamic and tailored web solutions with our expert web
-              development services.
-            </p>
-          </div>
-        </div>
-        {/* Second Card - Software Testing */}
-        <div
-          className="card animate-left"
-          onClick={() => handleCardClick("learning")}
-        >
-          {" "}
-          <div className="card-image">
-            <img src={Learning} alt="Learning Platform" />
-          </div>
-          <div className="card-content">
-            <div className="card-title">Learning Platform</div>
-            <p className="card-text" style={{ textAlign: "left" }}>
-              Elevate your skills with our proprietary, state-of-the-art
-              learning platform designed for comprehensive education.
-            </p>
-          </div>
-        </div>
-
-        {/* Third Card - Digital Marketing */}
-        {/* <div className="card">
-          <div className="card-image">
-            <img src={DigitalMarketing} alt="Digital Marketing" />
-          </div>
-          <div className="card-content">
-            <div className="card-title">Digital Marketing</div>
-            <div className="card-text">
-              Using digital marketing techniques, you can reach a global
-              audience in a way that is cost-effective, scalable, and
-              measurable. Some of the key benefits of digital marketing include:
-              The ability to interact with your prospects and learn exactly what
-              they are looking for, i.e., get to know your customers better!
+      <div className="custom-services-grid" style={{ marginTop: "30px", opacity: 1, flexWrap: "wrap" }}>
+        {selectedServices.map((service, index) => (
+          <div 
+            key={service.id} 
+            className="services-flip-card deal-animation"
+            style={{ '--card-index': index, opacity: 1 }}
+          >
+            <div className="services-flip-card-inner">
+              <div className="services-flip-card-front">
+                <div 
+                  className="services-flip-card-image" 
+                  style={{ backgroundImage: `url(${service.image})` }}
+                ></div>
+                <div className="services-flip-card-title-container">
+                  <h2>{service.title}</h2>
+                </div>
+              </div>
+              <div className="services-flip-card-back">
+                <h2>{service.title}</h2>
+                <p>{service.subtitle}</p>
+                <button 
+                  className="view-details-btn" 
+                  onClick={() => navigate(`/services/detail/${service.id}`)}
+                >
+                  View Details
+                </button>
+              </div>
             </div>
           </div>
-        </div> */}
-
-        {/* Fourth Card - Web Designing */}
-        <div
-          className="card animate-left"
-          onClick={() => handleCardClick("App Development")}
-        >
-          <div className="card-image">
-            <img src={Android} alt="Android App Development" />
-          </div>
-          <div className="card-content">
-            <div className="card-title">App Development</div>
-            <p className="card-text" style={{ textAlign: "left" }}>
-              Empowering innovation through cutting-edge mobile and web app
-              development tailored to your needs.
-            </p>
-          </div>
+        ))}
+        
+        {/* View More Button */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "400px", marginLeft: "10px" }}>
+          <button 
+            className="explore-btn"
+            style={{ 
+              padding: "12px 28px",
+              fontSize: "1.1rem"
+            }}
+            onClick={() => navigate("/services")}
+          >
+            View More &rarr;
+          </button>
         </div>
       </div>
     </div>

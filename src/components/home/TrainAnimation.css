@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap');
+
+.train-animation-container {
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  padding: 60px 0;
+  background-color: #f9f9f9;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 250px;
+}
+
+.train-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 100%;
+}
+
+.train-line-1, .train-line-2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem; 
+  font-weight: 900;
+  margin: 5px 0;
+  white-space: nowrap;
+}
+
+.train-line-1 {
+  color: #0a5a96; 
+  align-self: center; 
+}
+
+.train-line-2 {
+  color: #0a5a96; 
+  margin-left: 150px; 
+  align-self: center;
+}
+
+/* PHASE 1: Train Entry Animations */
+.train-enter-1 {
+  animation: trainIn 1.5s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+  transform: translateX(-100vw); /* Start off-screen */
+}
+
+.train-enter-2 {
+  animation: trainIn 1.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+  animation-delay: 1.2s; /* Wait for line 1 to almost finish */
+  transform: translateX(-100vw);
+}
+
+@keyframes trainIn {
+  0% { transform: translateX(-100vw); }
+  100% { transform: translateX(0); }
+}
+
+/* PHASE 2: Marquee Scrolling */
+.marquee-content-wrapper {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.marquee-scroll-track {
+  display: flex;
+  width: fit-content;
+  animation: scrollLeft 15s linear infinite;
+}
+
+.marquee-item {
+  width: auto;
+  min-width: 50vw; /* Space out the repeating items */
+  padding-right: 150px;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Scrolls precisely half its length, then seamlessly loops assuming 4 copies */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .train-line-1, .train-line-2 {
+    font-size: 2rem;
+  }
+  .train-line-2 {
+    margin-left: 50px;
+  }
+  .marquee-item {
+    min-width: 100vw;
+  }
+}

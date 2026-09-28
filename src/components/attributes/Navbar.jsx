@@ -49,7 +49,8 @@ function Navbar() {
             className="logoImg"
             alt="logo"
             // width="140px"
-            height="65px"
+            height="85px"
+            style={{ borderRadius: "10px", transition: "transform 0.3s ease" }}
           />
         </div>
         <input type="checkbox" id="click" />
@@ -71,12 +72,12 @@ function Navbar() {
               About us
             </NavLink>
 
-            <NavLink to="/learning" className="liv">
-              Learning Modules
-            </NavLink>
-
             <NavLink to="/services" className="liv">
               Services
+            </NavLink>
+
+             <NavLink to="/products" className="liv">
+              Products
             </NavLink>
 
             <NavLink to="/contact" className="liv">

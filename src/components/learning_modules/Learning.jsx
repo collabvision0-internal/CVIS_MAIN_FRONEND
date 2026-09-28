@@ -1,7 +1,7 @@
 import Navbar from "../attributes/Navbar";
 import "./Learning.css";
 // import "../home/Home.css";
-import Hero from "../home/Hero.jpg";
+import Hero from "../home/Hero.png";
 
 import { TaggedContentCard } from "react-ui-cards";
 const cardData = [

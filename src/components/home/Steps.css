@@ -74,7 +74,6 @@ ol li::after {
   inset: 0;
   position: absolute;
   border-radius: 50%;
-  border: var(--borderS) solid var(--bgColor);
   line-height: 1.1;
 }
 ol li::before {
@@ -86,9 +85,23 @@ ol li::before {
   overflow: hidden;
 }
 
+@keyframes circleFloat {
+  0%, 100% { 
+    transform: translateY(0) scale(1); 
+    border-color: rgba(255, 255, 255, 0.9);
+  }
+  50% { 
+    transform: translateY(-8px) scale(1.03); 
+    border-color: #0075aa;
+  }
+}
+
 ol li::after {
   content: "";
+  border: var(--borderS) solid rgba(255, 255, 255, 0.9);
   filter: drop-shadow(-0.25rem 0.25rem 0.0675rem rgba(0, 0, 0, 0.75)) blur(5px);
+  animation: circleFloat 6s ease-in-out infinite;
+  z-index: -1;
 }
 
 ol li > * {

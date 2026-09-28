@@ -105,23 +105,9 @@ const GoToTop = () => {
     <div>
       <Wrapper>
         {visible && (
-          <>
-            <div className="topButton" onClick={GoToTopButton}>
-              <ArrowUpwardIcon className="topButtonIcon" />
-            </div>
-            <Link
-              to="https://wa.me/918767421060?text=Hello%2C%20I%20would%20like%20to%20chat%20about%20your%20services!"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsAppButton"
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-                alt="WhatsApp"
-                className="whatsAppIcon"
-              />
-            </Link>
-          </>
+          <div className="topButton" onClick={GoToTopButton}>
+            <ArrowUpwardIcon className="topButtonIcon" />
+          </div>
         )}
       </Wrapper>
     </div>

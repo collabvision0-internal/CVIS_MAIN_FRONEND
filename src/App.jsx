@@ -5,7 +5,7 @@ import Home from "./components/home/Home";
 import Learning from "./components/learning_modules/Learning";
 import Navbar from "./components/attributes/Navbar";
 import Footer from "./components/attributes/Footer";
-import GoToTop from "./components/attributes/GoToTop";
+import ChatbotWidget from "./components/attributes/ChatbotWidget";
 import Ccpage from "./components/learning_modules/learning_pages/ccpage";
 import Softwaretestinfpage from "./components/learning_modules/learning_pages/softwaretestinfpage";
 import Ccmulesoft from "./components/learning_modules/learning_pages/ccmulesoft";
@@ -24,8 +24,11 @@ import Androiddevpage from "./components/cservices/servicepages/androiddevpage";
 import Integration from "./components/cservices/servicepages/Integration";
 import Ccpagecontent from "./components/learning_modules/learning_pages/ccpage";
 import Webdesign from "./components/cservices/servicepages/webdesign";
+import Products from "./components/products/Products";
 import Login from "./components/attributes/login";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ServiceDetail from "./components/cservices/ServiceDetail";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import "./App.css";
 import Cont from "./components/contact_us/Cont";
 import Temp from "./components/home/Temp";
@@ -33,10 +36,21 @@ import Timeline from "./components/home/Motion/Timeline";
 import PricingCards from "./components/home/allCards/PricingCards";
 import ProductPrice from "./components/ProductPrice";
 import { Helmet } from "react-helmet";
+import ParticlesBackground from "./components/ParticlesBackground";
+
+function ScrollToTopAuto() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <>
       {" "}
+      <ParticlesBackground />
       <Helmet>
         <title>
           Collab Vision Info Solution - Software Development Company
@@ -69,6 +83,7 @@ function App() {
         <meta property="og:site_name" content="Collab Vision Info Solution" />
       </Helmet>
       <Router>
+        <ScrollToTopAuto />
         {/* <Navbar /> */}
         <Routes>
           <Route path="/temp" element={<Timeline />} />
@@ -76,7 +91,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<Cont />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/detail/:id" element={<ServiceDetail />} />
           <Route path="/services/graphic" element={<Garphic />} />
           <Route path="/services/seopage" element={<Seopage />} />
           <Route path="/services/cloudpage" element={<Cloudcpage />} />
@@ -117,7 +134,7 @@ function App() {
           <Route path="/pricing/:category" element={<PricingCards />} />
           <Route path="/p" element={<ProductPrice />} />
         </Routes>
-        <GoToTop />
+        <ChatbotWidget />
         <Footer />
       </Router>
     </>

@@ -41,11 +41,121 @@ import Ourfeedback from "./ourfeed/ourfeedback";
 import Navbar from "../attributes/Navbar";
 import Steps from "./Steps";
 import Testimonials from "./allCards/Testimonials";
-import Hero from "./Hero.jpg";
+import HeroImg1 from "./hero_images/Hero.png";
+import HeroImg2 from "./hero_images/hero_2.jpg";
+import HeroImg3 from "./hero_images/hero_3.jpg";
+import HeroImg4 from "./hero_images/integration-services.jpg";
+import HeroImg5 from "./hero_images/mobile-app-development.jpg";
+import HeroImg6 from "./hero_images/seo.jpg";
 import { useNavigate } from "react-router-dom";
 import Computer from "./Computer";
 import PriceCard from "./allCards/PriceCard";
-import { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import TrainAnimation from "./TrainAnimation";
+
+const AnimatedLetters = ({ text, color = "#0a5a96" }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const domRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      // Keep it visible once it triggers, or animate in/out. Let's trigger once.
+      if (entries[0].isIntersecting) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false); // Play every time it comes into view
+      }
+    });
+    if (domRef.current) observer.observe(domRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <h1
+      ref={domRef}
+      style={{
+        color: color,
+        margin: "5px",
+        fontWeight: "900", // bold
+        display: "inline-block",
+      }}
+    >
+      {text.split("").map((char, index) => (
+        <span
+          key={index}
+          style={{
+            display: "inline-block",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0) scale(1)" : "translateY(30px) scale(0.5)",
+            transition: "opacity 0.4s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+            transitionDelay: `${index * 0.08}s`,
+          }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </h1>
+  );
+};
+
+const TypewriterEffect = ({ text }) => {
+  const [displayedText, setDisplayedText] = useState("");
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i <= text.length) {
+        setDisplayedText(text.substring(0, i));
+      }
+      i++;
+      if (i > text.length + 30) { // pause at the end for about 1.5 seconds
+        i = 0;
+      }
+    }, 50);
+    return () => clearInterval(interval);
+  }, [text]);
+  return <span>{displayedText}</span>;
+};
+
+const HeroSlider = () => {
+  const images = [
+    HeroImg1,
+    HeroImg2,
+    HeroImg3,
+    HeroImg4,
+    HeroImg5,
+    HeroImg6
+  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div style={{ width: "100%", minWidth: "300px", maxWidth: "580px", height: "350px", position: "relative", overflow: "hidden", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
+      {images.map((img, index) => (
+        <img
+          key={index}
+          src={img}
+          alt={`Slide ${index}`}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: index === currentIndex ? 1 : 0,
+            transition: "opacity 1s ease-in-out"
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 function Home() {
   const navigate = useNavigate();
@@ -106,32 +216,19 @@ function Home() {
         </div>
       </main> */}
 
-      <main style={{ padding: "30px" }}>
-        <div className="container" style={{ position: "relative", zIndex: 1 }}>
-          {/* Background Grid */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: -10,
-              height: "100%",
-              width: "100%",
-              backgroundColor: "white",
-              backgroundImage:
-                "linear-gradient(to right, rgba(143, 142, 142, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(143, 142, 142, 0.5) 1px, transparent 1px)",
-              backgroundSize: "6rem 4rem",
-            }}
-          ></div>
-          <div>
-            <img src={Hero} alt="Hero" />
+      <main style={{ padding: "20px 10px", minHeight: "calc(100vh - 100px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div className="container" style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "row", alignItems: "flex-start", justifyContent: "center", gap: "35px", width: "100%", maxWidth: "1200px" }}>
+          {/* Background Grid removed as requested */}
+          <div style={{ display: "flex", justifyContent: "flex-end", flexShrink: 0 }}>
+            <HeroSlider />
           </div>
-          <div style={{ position: "relative", zIndex: 2 }}>
+          <div style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "flex-start", marginTop: "-10px" }}>
             {/* Spot Color Behind Text */}
             <div
               style={{
                 position: "absolute",
-                top: "50px",
-                left: "20px",
+                top: "20px",
+                left: "0px",
                 height: "300px",
                 width: "300px",
                 borderRadius: "50%",
@@ -144,36 +241,46 @@ function Home() {
             ></div>
 
             {/* Text Content */}
-            <div className="hero-text" style={{ position: "relative" }}>
-              <h1>Elevate Your Business with Advanced Software Technologies</h1>
-              <p>
-                Transform your operations and achieve greater efficiency with
-                our state-of-the-art software solutions. Join us in shaping the
-                future of your business.
+            <div className="hero-text" style={{ position: "relative", maxWidth: "550px", padding: "0 10px" }}>
+              <h1 style={{ fontSize: "2.7rem", lineHeight: "1.1", marginBottom: "15px", color: "#111", fontWeight: "800", textAlign: "left", minHeight: "90px" }}>
+                <TypewriterEffect text="Elevate Your Business with Advanced Software Technologies" />
+              </h1>
+              <p style={{ fontSize: "1.1rem", lineHeight: "1.5", marginBottom: "25px", color: "#444", textAlign: "left" }}>
+                Scale efficiently, streamline workflows, and future-proof your business. Our custom automation and state-of-the-art software technologies eliminate bottlenecks and drive measurable efficiency so your team can focus on growth.
               </p>
-              <button onClick={() => navigate("/contact")}>Contact Us</button>
+              <button 
+                onClick={() => navigate("/contact")}
+                style={{
+                  padding: "12px 30px", 
+                  fontSize: "1.05rem", 
+                  backgroundColor: "#0075aa", 
+                  color: "white", 
+                  border: "2px solid transparent", 
+                  borderRadius: "8px", 
+                  cursor: "pointer", 
+                  fontWeight: "bold", 
+                  boxShadow: "0 4px 10px rgba(0,117,170,0.3)",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                Contact Us
+              </button>
             </div>
           </div>
         </div>
       </main>
 
-      <div className="cardsFlow " style={{ width: "100%" }}>
+      <div className="cardsFlow " style={{ width: "100%", overflowX: "hidden" }}>
         <div style={{ height: "auto" }}>
           {" "}
           <PriceCard></PriceCard>
         </div>{" "}
         <Cards />
-        <div className="mission">
-          <h1
-            className="animated fadeIn animate-down"
-            style={{ color: "#0a5a96" }}
-          >
-            YOUR VISION OUR SOLUTION
-          </h1>
-        </div>
-        <Steps></Steps>
+        <TrainAnimation />
+        {/* <Steps></Steps> */}
       </div>
 
+      {/* 
       <div
         style={{
           height: "100vh",
@@ -223,7 +330,8 @@ function Home() {
           .
         </p>
       </div>
-      <FeedForm />
+      */}
+      {/* <FeedForm /> */}
       <Testimonials></Testimonials>
       {/* <BookDemo /> */}
       {/* <Ourfeedback /> */}
