@@ -124,7 +124,7 @@ a {
   ul {
     display: block;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.3);
+    background: white;
     backdrop-filter: blur(10px);
     position: fixed;
     top: 50px;
