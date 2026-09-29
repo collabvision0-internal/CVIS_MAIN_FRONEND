@@ -24,34 +24,49 @@ function ServiceDetail() {
     <>
       <Navbar />
       <div className="service-detail-container">
-        <div className="service-detail-header" style={{ backgroundImage: `url(${service.image})` }}>
+        <div
+          className="service-detail-header"
+          style={{ backgroundImage: `url(${service.image})` }}
+        >
           <div className="service-detail-header-overlay">
             <h1>{service.title}</h1>
             <h2>{service.subtitle}</h2>
           </div>
         </div>
-        
+
         <div className="service-detail-content">
           <div className="service-detail-description-card">
             <h3>Overview</h3>
             <p>{service.description}</p>
           </div>
 
-          <div className="service-detail-includes-section">
-            <h3>Our {service.title} Include:</h3>
-            <ul className="service-detail-includes-list">
-              {service.includes.map((item, index) => (
-                <li key={index}>
-                  <span className="check-icon">✓</span>
-                  {item}
-                </li>
+          <div className="service-includes">
+            <div className="service-includes-header">
+              <div className="service-includes-icon">
+                <span>✓</span>
+              </div>
+              <div className="service-includes-heading">
+                <h3>What Our Service Includes</h3>
+                <p>Explore the features and benefits of our {service.title}.</p>
+              </div>
+            </div>
+
+            <div className="service-includes-grid">
+              {service.includes?.map((item, index) => (
+                <div className="service-includes-item" key={index}>
+                  <span className="service-includes-check">✓</span>
+                  <span className="service-includes-text">{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
-        
+
         <div className="service-detail-footer">
-          <button className="back-to-services-btn" onClick={() => navigate("/services")}>
+          <button
+            className="back-to-services-btn"
+            onClick={() => navigate("/services")}
+          >
             &larr; Back to Services
           </button>
         </div>
