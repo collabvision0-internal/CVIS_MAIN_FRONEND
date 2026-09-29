@@ -13,7 +13,7 @@ const Cards = () => {
 
   return (
     <div className="main-container" style={{ flexDirection: "column", alignItems: "center" }}>
-      <h1 style={{ color: "black", margin: "40px 0 10px 0", fontSize: "2.5rem", fontWeight: "700" }}>Services</h1>
+      <h1 style={{ color: "black", margin: "40px 0 10px 0", fontSize: "2.5rem", fontWeight: "700", textAlign:"center" }}>Services</h1>
       
       <div className="custom-services-grid" style={{ marginTop: "30px", opacity: 1, flexWrap: "wrap" }}>
         {selectedServices.map((service, index) => (
