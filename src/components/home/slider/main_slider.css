@@ -1,64 +1,716 @@
-/* main_slider.css */
+
+/* =========================================
+   SLIDER CONTAINER
+========================================= */
+
 .slider-container {
-    max-width: 1520px;
-    margin: 0;
-    
-  }
-  
-  /* slider */
-  .image-slider {
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    height: 580px;
-  }
-  
-  /* Fix this issue slider images */
-  .image-slider img {
+  position: relative;
+  width: 100%;
+  max-width: 1520px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   IMAGE SLIDER
+========================================= */
+
+.image-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: clamp(280px, 38vw, 580px);
+  min-width: 0;
+  overflow: hidden;
+  background-color: #f5f7f9;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   SLIDER IMAGES
+========================================= */
+
+.image-slider img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* =========================================
+   NAVIGATION BUTTONS
+========================================= */
+
+.image-slider .nav-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.image-slider .nav-btn:hover {
+  background-color: rgba(0, 117, 170, 0.9);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+}
+
+.image-slider .nav-btn:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.image-slider .nav-btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Previous and next positions */
+
+.image-slider .nav-btn.prev {
+  left: 20px;
+}
+
+.image-slider .nav-btn.next {
+  right: 20px;
+}
+
+/* =========================================
+   BULLET INDICATORS
+========================================= */
+
+.image-slider .bullets-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: calc(100% - 100px);
+  padding: 8px 12px;
+  transform: translateX(-50%);
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+/* Individual bullet */
+
+.image-slider .bullet {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    width 0.3s ease;
+}
+
+.image-slider .bullet:hover {
+  background-color: #fff;
+  transform: scale(1.2);
+}
+
+/* Active bullet */
+
+.image-slider .bullet.active {
+  width: 24px;
+  border-radius: 10px;
+  background-color: #0075aa;
+}
+
+/* =========================================
+   LARGE LAPTOPS
+========================================= */
+
+@media (max-width: 1200px) {
+  .slider-container {
     max-width: 100%;
-    max-height: 100%;
-    object-fit: cover; 
   }
-  
+
+  .image-slider {
+    height: clamp(300px, 42vw, 500px);
+  }
+
+  .image-slider .nav-btn.prev {
+    left: 16px;
+  }
+
+  .image-slider .nav-btn.next {
+    right: 16px;
+  }
+
+  .image-slider .bullets-container {
+    bottom: 16px;
+  }
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 992px) {
+  .image-slider {
+    height: clamp(280px, 48vw, 420px);
+  }
+
   .image-slider .nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
   }
-  
+
+  .image-slider .nav-btn.prev {
+    left: 14px;
+  }
+
+  .image-slider .nav-btn.next {
+    right: 14px;
+  }
+
+  .image-slider .bullets-container {
+    bottom: 14px;
+    gap: 7px;
+    padding: 7px 10px;
+  }
+
+  .image-slider .bullet {
+    width: 9px;
+    height: 9px;
+  }
+
+  .image-slider .bullet.active {
+    width: 21px;
+  }
+}
+
+/* =========================================
+   SMALL TABLETS AND MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .slider-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .image-slider {
+    width: 100%;
+    height: clamp(240px, 55vw, 380px);
+    border-radius: 10px;
+  }
+
+  .image-slider img {
+    object-position: center;
+  }
+
+  .image-slider .nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
   .image-slider .nav-btn.prev {
     left: 10px;
   }
-  
+
   .image-slider .nav-btn.next {
     right: 10px;
   }
-  
+
   .image-slider .bullets-container {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
+    bottom: 12px;
+    gap: 6px;
+    max-width: calc(100% - 80px);
+    padding: 6px 9px;
+  }
+
+  .image-slider .bullet {
+    width: 8px;
+    height: 8px;
+  }
+
+  .image-slider .bullet.active {
+    width: 19px;
+  }
+}
+
+/* =========================================
+   MOBILE PHONES
+========================================= */
+
+@media (max-width: 480px) {
+  .image-slider {
+    height: clamp(210px, 62vw, 300px);
+    border-radius: 8px;
+  }
+
+  .image-slider .nav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .image-slider .nav-btn.prev {
+    left: 8px;
+  }
+
+  .image-slider .nav-btn.next {
+    right: 8px;
+  }
+
+  .image-slider .bullets-container {
+    bottom: 8px;
+    gap: 5px;
+    padding: 5px 8px;
+  }
+
+  .image-slider .bullet {
+    width: 7px;
+    height: 7px;
+  }
+
+  .image-slider .bullet.active {
+    width: 17px;
+  }
+}
+
+/* =========================================
+   EXTRA SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+  .image-slider {
+    height: 210px;
+  }
+
+  .image-slider .nav-btn {
+    width: 29px;
+    height: 29px;
+    font-size: 16px;
+  }
+
+  .image-slider .nav-btn.prev {
+    left: 6px;
+  }
+
+  .image-slider .nav-btn.next {
+    right: 6px;
+  }
+
+  .image-slider .bullets-container {
+    bottom: 7px;
+    gap: 4px;
+    padding: 4px 7px;
+  }
+
+  .image-slider .bullet {
+    width: 6px;
+    height: 6px;
+  }
+
+  .image-slider .bullet.active {
+    width: 15px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .image-slider *,
+  .image-slider *::before,
+  .image-slider *::after {
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}
+
+
+/* =========================================
+   TESTIMONIAL SECTION - FULL WIDTH
+========================================= */
+
+.body1,
+.testimonials-section {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 60px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Prevent children from expanding the page */
+
+.body1 *,
+.testimonials-section * {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.body1 > h1,
+.testimonials-heading h2 {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 40px;
+  padding: 0 16px;
+  text-align: center;
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.25;
+  overflow-wrap: break-word;
+}
+
+/* =========================================
+   SLIDER CONTAINER
+   Supports existing slider class names
+========================================= */
+
+.body1 .slider-container,
+.body1 .testimonials-slider,
+.testimonials-section .slider-container,
+.testimonials-section .testimonials-slider {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: auto;
+  margin: 0;
+  padding: 16px 0 30px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   SLIDER TRACK
+========================================= */
+
+.body1 .slider-track,
+.body1 .testimonials-track,
+.testimonials-section .slider-track,
+.testimonials-section .testimonials-track {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: max-content;
+  max-width: none;
+  min-width: 0;
+  gap: 24px;
+  margin: 0;
+  padding: 0 24px;
+  animation: testimonial-scroll-right 45s linear infinite;
+  will-change: transform;
+}
+
+/* Animate cards from left to right */
+
+@keyframes testimonial-scroll-right {
+  from {
     transform: translateX(-50%);
   }
-  
-  .image-slider .bullet {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #fff;
-    margin: 5px;
-    cursor: pointer;
+
+  to {
+    transform: translateX(0);
   }
-  
-  .image-slider .bullet.active {
-    background-color: #f00;
+}
+
+/* Pause animation when hovering */
+
+.body1 .slider-container:hover .slider-track,
+.body1 .testimonials-slider:hover .testimonials-track,
+.testimonials-section .slider-container:hover .slider-track,
+.testimonials-section .testimonials-slider:hover .testimonials-track {
+  animation-play-state: paused;
+}
+
+/* =========================================
+   SLIDER CARDS
+========================================= */
+
+.body1 .box,
+.testimonials-section .testimonial-card {
+  position: relative;
+  display: flex;
+  flex: 0 0 340px;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 340px;
+  max-width: none;
+  min-width: 0;
+  min-height: 300px;
+  height: auto;
+  margin: 0;
+  padding: 24px;
+  overflow-wrap: anywhere;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.body1 .box:hover,
+.testimonials-section .testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.13);
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.body1 .box p,
+.testimonials-section .testimonial-text {
+  width: 100%;
+  margin: 0 0 18px;
+  color: #334155;
+  font-size: 15px;
+  line-height: 1.7;
+  text-align: left;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.body1 .content,
+.body1 .info,
+.testimonials-section .testimonial-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 100%;
+  margin-top: auto;
+  gap: 7px;
+}
+
+.body1 .raing,
+.testimonials-section .testimonial-rating {
+  color: #f5b400;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.body1 .name,
+.testimonials-section .testimonial-name {
+  width: 100%;
+  margin: 5px 0 0;
+  color: #0075aa;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.body1 .website-link,
+.testimonials-section .testimonial-website {
+  max-width: 100%;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.body1 .website-link a,
+.testimonials-section .testimonial-website {
+  color: #0075aa;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.body1 .website-link a:hover,
+.testimonials-section .testimonial-website:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  .body1,
+  .testimonials-section {
+    width: 100%;
+    max-width: 100%;
+    padding: 45px 0;
   }
-  
+
+  .body1 > h1,
+  .testimonials-heading h2 {
+    margin-bottom: 28px;
+    font-size: clamp(24px, 5vw, 34px);
+  }
+
+  .body1 .slider-container,
+  .body1 .testimonials-slider,
+  .testimonials-section .slider-container,
+  .testimonials-section .testimonials-slider {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 0 24px;
+  }
+
+  .body1 .slider-track,
+  .body1 .testimonials-track,
+  .testimonials-section .slider-track,
+  .testimonials-section .testimonials-track {
+    gap: 18px;
+    padding: 0 18px;
+    animation-duration: 55s;
+  }
+
+  .body1 .box,
+  .testimonials-section .testimonial-card {
+    flex-basis: min(78vw, 340px);
+    width: min(78vw, 340px);
+    min-height: 290px;
+    padding: 22px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .body1,
+  .testimonials-section {
+    width: 100%;
+    max-width: 100%;
+    padding: 36px 0;
+  }
+
+  .body1 > h1,
+  .testimonials-heading h2 {
+    margin-bottom: 22px;
+    padding: 0 14px;
+    font-size: clamp(22px, 7vw, 28px);
+  }
+
+  .body1 .slider-container,
+  .body1 .testimonials-slider,
+  .testimonials-section .slider-container,
+  .testimonials-section .testimonials-slider {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 0 20px;
+  }
+
+  .body1 .slider-track,
+  .body1 .testimonials-track,
+  .testimonials-section .slider-track,
+  .testimonials-section .testimonials-track {
+    gap: 14px;
+    padding: 0 14px;
+    animation-duration: 65s;
+  }
+
+  .body1 .box,
+  .testimonials-section .testimonial-card {
+    flex-basis: 84vw;
+    width: 84vw;
+    min-height: 280px;
+    padding: 19px;
+    border-radius: 14px;
+  }
+
+  .body1 .box p,
+  .testimonials-section .testimonial-text {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .body1 .name,
+  .testimonials-section .testimonial-name {
+    font-size: 14px;
+  }
+
+  .body1 .website-link a,
+  .testimonials-section .testimonial-website {
+    font-size: 13px;
+  }
+}
+
+/* =========================================
+   EXTRA SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+  .body1 .slider-track,
+  .body1 .testimonials-track,
+  .testimonials-section .slider-track,
+  .testimonials-section .testimonials-track {
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  .body1 .box,
+  .testimonials-section .testimonial-card {
+    flex-basis: 86vw;
+    width: 86vw;
+    padding: 16px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .body1 .slider-track,
+  .body1 .testimonials-track,
+  .testimonials-section .slider-track,
+  .testimonials-section .testimonials-track {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .body1 .box,
+  .testimonials-section .testimonial-card {
+    transition: none;
+  }
+}
