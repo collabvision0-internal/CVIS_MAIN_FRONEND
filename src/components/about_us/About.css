@@ -213,7 +213,7 @@ body {
   height: auto;
   background: transparent;
 
-  margin-top: 75px;
+  margin-top: 25px;
 }
 
 /* Duplicate .mainAbt removed or set to transparent */
@@ -460,7 +460,7 @@ body {
 
 @media (max-width: 1450px) {
   .mainAbt {
-    margin-top: 75px;
+    margin-top: 25px;
   }
 }
 
