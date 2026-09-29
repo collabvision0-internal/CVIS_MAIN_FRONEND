@@ -300,9 +300,11 @@ function Products() {
                         <div className="product-benefits-grid">
                           {selectedProduct.features.map((feature, index) => (
                             <div className="product-benefit-item" key={index}>
-                              <span className="product-benefit-check">
-                                <FontAwesomeIcon icon={faCheckCircle} />
-                              </span>
+                              {/* <span className="product-benefit-check"> */}
+                                <div className="products-includes-icon">
+                                  <span>✓</span>
+                                </div>{" "}
+                              {/* </span> */}
                               <span className="product-benefit-text">
                                 {feature}
                               </span>
