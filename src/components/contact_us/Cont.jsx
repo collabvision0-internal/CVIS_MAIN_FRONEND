@@ -719,7 +719,7 @@ const Cont = () => {
     try {
       const response = await axios.post(
         "https://cviswebsitebackend.onrender.com/contact",
-        formData
+        formData,
       );
       console.log("SUBMITTED", response.data);
       toast.success("Form submitted successfully!");
@@ -765,10 +765,14 @@ const Cont = () => {
           />
         </div>
       ) : (
-        <div>
+        <div
+          style={{
+            padding: "20px",
+          }}
+        >
           <h3
             style={{
-              margin: "100px 20px 10px 20px",
+              margin: "10px 20px 10px 20px",
               textAlign: "center",
               fontSize: "1.2em",
             }}
@@ -798,7 +802,16 @@ const Cont = () => {
             <br />
           </h3>
           <div className="feed-form-container">
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdkA8__ZIDmlSHx6Z7RScP1Jy3motPUnBVGHRXNfUKlBd-VnA/viewform?embedded=true" width="640" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdkA8__ZIDmlSHx6Z7RScP1Jy3motPUnBVGHRXNfUKlBd-VnA/viewform?embedded=true"
+              width="640"
+              height="500"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+            >
+              Loading…
+            </iframe>
           </div>
         </div>
       )}

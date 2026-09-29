@@ -30,6 +30,7 @@ function Services() {
               key={service.id} 
               className={`services-flip-card ${animate ? 'deal-animation' : ''}`}
               style={{ '--card-index': index }}
+               onClick={() => navigate(`/services/detail/${service.id}`)}
             >
               <div className="services-flip-card-inner">
                 <div className="services-flip-card-front">
